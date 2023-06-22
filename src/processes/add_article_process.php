@@ -17,7 +17,7 @@ if (!empty($_POST)) {
             $query = "INSERT INTO `articles`(`title`,`content`,`image`, user_id) VALUES (?,?,?,?)";
             $values = [$title, $content, $uploadResult['imageUrl'], $user_id];
             $result = execute_query($pdo, $query, 'insert', $values);
-            header("location: /rando133/articles");
+            header("location: /rando13/articles");
             exit();
         } else {
             $validationErrors['image'] = implode(', ', $uploadResult['errors']);

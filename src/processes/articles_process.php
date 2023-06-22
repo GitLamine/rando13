@@ -3,7 +3,7 @@
 if (isset($_GET['delete_article'])) {
     $id = $_GET['delete_article'];
     deleteArticle($pdo, $id);
-    header("Location: /rando133/articles");
+    header("Location: /rando13/articles");
     exit();
 }
 // Pagination

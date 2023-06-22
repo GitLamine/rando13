@@ -1,5 +1,4 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/config.php';
 // fonction de connexion à la DB
 function connectDB()
 {

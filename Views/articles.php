@@ -2,13 +2,13 @@
 require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/functions.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/processes/articles_process.php';
 $titre = "Accueil";
-var_dump($datas);
+// var_dump($datas);
 ?>
 <div class="container">
     <h2 class="my-4">Articles :</h2>
 
     <?php foreach ($datas as $data) : ?>
-        <div class="card mb-4">k
+        <div class="card mb-4">
             <div class="card-header">
                 <h2 class="card-title"><?= htmlspecialchars($data["title"]); ?></h2>
             </div>

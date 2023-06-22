@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando133/src/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/src/functions.php';
 
 $title = "Réinitialiser le mot de passe";
 

@@ -10,6 +10,7 @@ body {
 nav {
     display: flex;
     justify-content: space-between;
+    flex-direction: row-reverse;
 }
 
 nav .logo {
@@ -25,13 +26,14 @@ nav .logo {
     padding: 0 !important;
 }
 
+.navbar-toggler {
+    background-color: #f2bc57;
+    justify-self: flex-end;
+}
+
 .navbar-nav .nav-item {
     margin-bottom: 10px;
     margin-right: 0;
-}
-
-#navbarNav {
-    display: flex;
 }
 
 .nav-link {
@@ -41,6 +43,11 @@ nav .logo {
 
 .nav-link:hover {
     color: #f2bc57;
+}
+
+.navbar-nav {
+    /* display: flex !important; */
+    align-items: flex-end !important;
 }
 
 #hero {
@@ -65,7 +72,7 @@ nav .logo {
 }
 
 .container {
-    margin-top: 2em;
+    justify-content: flex-end !important;
 }
 
 .card {
@@ -112,16 +119,21 @@ nav .logo {
     height: auto;
 }
 
-.singup {
+/* .singup {
     margin-left: 3rem;
 }
 
 .singup input {
     margin-bottom: 1em !important;
 }
-
+*/
 .singup form {
     width: 30cm;
+    margin-left: 3rem;
+}
+
+.col-md-6 {
+    margin-bottom: 1rem;
 }
 
 .list-group {
@@ -156,9 +168,7 @@ nav .logo {
     width: 5cm;
 }
 
-.navbar-toggler {
-    background-color: #f2bc57;
-}
+
 
 .city_list .city-link {
     display: inline-block;

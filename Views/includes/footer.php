@@ -1,4 +1,3 @@
-</main>
 <footer class="text-muted py-5 bg-light">
         <div class="container">
                 <p class="mb-1">&copy; 2023 Rando13</p>
