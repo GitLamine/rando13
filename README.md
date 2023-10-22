@@ -3,7 +3,7 @@ My first back-end web app with php mysql
 Rando13 is an application aimed at sharing hiking experiences. Please note that the application is still under development and some features may not be fully finalized.
 
 # Technologies Used
-Laravel 8.1.10
+PHP native
 Bootstrap 5.3
 Native JavaScript
 
@@ -31,7 +31,6 @@ To add an article, use add_articles.php in the views folder, and the associated 
 # Installation
 Clone this repository to your local machine.
 Ensure that the mentioned prerequisites are installed and configured.
-Set up your Laravel environment following the usual steps.
 Run migrations to create the necessary database and tables.
 Launch the application using Laragon or any other compatible local server.
 
