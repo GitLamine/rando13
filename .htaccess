@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteBase /rando13/
+
+# Rediriger "rando13/" vers la page d'accueil
+RewriteRule ^$ index.php?action=home [QSA,L]
+
+# Rediriger toutes les autres requêtes vers index.php sauf pour les fichiers existants
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?action=$1 [QSA,L]
