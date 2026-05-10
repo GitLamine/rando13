@@ -123,8 +123,8 @@ function uploadImage($image)
     // Get the file extension
     $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
 
-    // Generate a unique filename
-    $filename = uniqid() . '.' . $extension;
+    // Generate a unique filename (random, non-predictable)
+    $filename = bin2hex(random_bytes(16)) . '.' . $extension;
 
     // Set the destination location for the file
     $destination = $_SERVER['DOCUMENT_ROOT'] . '/Rando13/uploads/' . $filename;
