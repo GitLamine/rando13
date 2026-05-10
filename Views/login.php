@@ -10,6 +10,7 @@ $title = "Connexion";
     <section class="login">
         <div class="col-md-6">
             <form action="" method="post" id="login-form">
+                <input type="hidden" name="csrf_token" value="<?= generate_csrf_token(); ?>">
                 <?php
                 $fields = ['email' => 'Email', 'password' => 'Mot de passe'];
                 foreach ($fields as $field => $label) :

@@ -53,8 +53,7 @@ if (!function_exists('send_newsletter')) {
                 }
             }
         } catch (Exception $e) {
-            // Affichage d'une erreur si l'e-mail échoue à l'envoi
-            echo "Message non envoyé. Erreur: " . $mail->ErrorInfo;
+            error_log("Mail error: " . $mail->ErrorInfo);
         }
     }
 }
@@ -96,8 +95,7 @@ if (!function_exists('send_confirmation_code')) {
             // Envoi de l'e-mail
             $mail->send();
         } catch (Exception $e) {
-            // Affichage d'une erreur si l'e-mail échoue à l'envoi
-            echo "Message non envoyé. Erreur: " . $mail->ErrorInfo;
+            error_log("Mail error: " . $mail->ErrorInfo);
         }
     }
 }

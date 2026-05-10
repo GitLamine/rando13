@@ -2,6 +2,23 @@
 // session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/config.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/database.php';
+// CSRF protection
+function generate_csrf_token(): string
+{
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+function verify_csrf_token(): void
+{
+    if (!isset($_POST['csrf_token']) || $_POST['csrf_token'] !== ($_SESSION['csrf_token'] ?? '')) {
+        http_response_code(403);
+        die("Requête invalide.");
+    }
+}
+
 // Function for executing a database query
 function execute_query($pdo, string $query, string $fetchMode, $values = [])
 {
@@ -34,7 +51,7 @@ function login_user($pdo, $email, $password)
         return $errors;
     }
 
-    $query = "SELECT * FROM `users` WHERE `email` = ?";
+    $query = "SELECT `id`, `first_name`, `last_name`, `email`, `password`, `role`, `city` FROM `users` WHERE `email` = ?";
     $values = [$email];
     $user = execute_query($pdo, $query, 'fetch', $values);
 
@@ -119,18 +136,27 @@ function uploadImage($image)
     // Set the destination location for the file
     $destination = $_SERVER['DOCUMENT_ROOT'] . '/Rando13/uploads/' . $filename;
 
-    // Define allowed file extensions
+    // Define allowed file extensions and MIME types
     $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');
+    $allowedMimeTypes = array('image/jpeg', 'image/png', 'image/gif');
 
-    // Define maximum file size (2MB in this example)
+    // Define maximum file size (4MB)
     $maxFileSize = 4 * 1024 * 1024;
 
     // Array to store potential errors
     $errors = [];
 
-    // Validate the file extension
+    // Validate extension
     if (!in_array($extension, $allowedExtensions)) {
         $errors[] = "Type de fichier invalide.";
+    }
+
+    // Validate real MIME type (not just extension)
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $realMimeType = finfo_file($finfo, $tmpName);
+    finfo_close($finfo);
+    if (!in_array($realMimeType, $allowedMimeTypes)) {
+        $errors[] = "Type de fichier non autorisé.";
     }
 
     // Validate the file size
@@ -243,14 +269,15 @@ function delete_user($pdo, $userId)
 // get the list of users
 function get_users($pdo)
 {
-    $query = "SELECT * FROM `users` ORDER BY `id` DESC";
+    $query = "SELECT `id`, `first_name`, `last_name`, `email`, `role`, `city`, `created_at` FROM `users` ORDER BY `id` DESC";
     return execute_query($pdo, $query, 'fetchAll');
 }
 
 // get information about a specific user and the number of published articles
 function get_user($pdo, $userId)
 {
-    $query = "SELECT users.*, COUNT(articles.id) AS article_count
+    $query = "SELECT users.id, users.first_name, users.last_name, users.email, users.role, users.city, users.created_at,
+                     COUNT(articles.id) AS article_count
               FROM users
               LEFT JOIN articles ON users.id = articles.user_id
               WHERE users.id = ?

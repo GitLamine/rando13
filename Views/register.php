@@ -9,6 +9,7 @@ $title = "Inscription";
 <section class="singup">
     <h1>Inscription</h1>
     <form action="" method="POST" class="needs-validation" novalidate>
+        <input type="hidden" name="csrf_token" value="<?= generate_csrf_token(); ?>">
         <?php
         $fields = [
             'first_name' => ['label' => 'Prénom', 'type' => 'text'],

@@ -11,7 +11,8 @@ function connectDB()
         $pdo->exec("SET NAMES utf8");
         return $pdo;
     } catch (PDOException $e) {
-        die("Erreur de conexion:" . $e->getMessage());
+        error_log("DB connection error: " . $e->getMessage());
+        die("Une erreur est survenue. Veuillez réessayer plus tard.");
     }
 }
 $pdo = connectDB();

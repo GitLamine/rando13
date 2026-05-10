@@ -13,7 +13,7 @@ if (isset($_POST['email'])) {
         // return $errors;
     } else {
         $email_post = $_POST['email'];
-        $query = "SELECT * FROM `users` WHERE `email` = ?";
+        $query = "SELECT `id`, `email` FROM `users` WHERE `email` = ?";
         $values = [$email_post];
         $user = execute_query($pdo, $query, 'fetch', $values);
 

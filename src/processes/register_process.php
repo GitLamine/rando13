@@ -2,6 +2,7 @@
 
 // conditionner l'inscription
 if (!empty($_POST)) {
+    verify_csrf_token();
     $email_errors = [];
 
     // vérification
@@ -20,7 +21,7 @@ if (!empty($_POST)) {
         } else {
             $email = $_POST["email"];
             // vérification de l'existance de l'email
-            $email_check_query = "SELECT * FROM `users` WHERE `email` = ?";
+            $email_check_query = "SELECT `id` FROM `users` WHERE `email` = ?";
             $email_check_values = [$email];
             $email_check_result = execute_query($pdo, $email_check_query, 'fetch', $email_check_values);
             if (!empty($email_check_result)) {

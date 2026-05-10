@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(setx GROQ_API_KEY *)",
+      "Skill(keybindings-help)"
+    ]
+  }
+}

@@ -15,6 +15,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/src/processes/add_article_pro
     ?>
 
     <form action="" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="<?= generate_csrf_token(); ?>">
         <div class="mb-3">
             <label for="title" class="form-label">Titre:</label>
             <input type="text" class="form-control" name="title" id="title">

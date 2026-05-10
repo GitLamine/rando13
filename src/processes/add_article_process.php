@@ -1,6 +1,7 @@
 <?php
 
 if (!empty($_POST)) {
+    verify_csrf_token();
     $title = htmlspecialchars(strip_tags($_POST["title"]));
     $content = htmlspecialchars(strip_tags($_POST["content"]));
     $image = $_FILES['image'];
