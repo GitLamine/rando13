@@ -11,6 +11,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 // send mails to seubscribers
+// Modification de la fonction send_newsletter pour ajouter une vérification de l'adresse e-mail
 if (!function_exists('send_newsletter')) {
     function send_newsletter($subscribers, $subject, $body)
     {
@@ -41,11 +42,15 @@ if (!function_exists('send_newsletter')) {
             // Paramétrage du corps de l'e-mail
             $mail->Body = $body;
 
-            // Envoi de l'e-mail à chaque abonné
+            // Vérification de l'adresse e-mail de chaque abonné
             foreach ($subscribers as $subscriber) {
-                $mail->addAddress($subscriber['email']);
-                $mail->send();
-                $mail->clearAddresses();
+                if (filter_var($subscriber['email'], FILTER_VALIDATE_EMAIL)) {
+                    $mail->addAddress($subscriber['email']);
+                    $mail->send();
+                    $mail->clearAddresses();
+                } else {
+                    echo "Adresse e-mail non valide : " . $subscriber['email'];
+                }
             }
         } catch (Exception $e) {
             // Affichage d'une erreur si l'e-mail échoue à l'envoi
