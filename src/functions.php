@@ -24,20 +24,13 @@ function execute_query($pdo, string $query, string $fetchMode, $values = [])
 {
     $stmt = $pdo->prepare($query);
     if (!$stmt->execute($values)) {
-        $errorInfo = $stmt->errorInfo();
-        $errorMsg = "Error executing query: " . $errorInfo[2];
-        throw new Exception($errorMsg);
-    } else {
-        if ($fetchMode == 'fetch') {
-            return $stmt->fetch();
-        } else {
-            if (strpos($query, 'DELETE') !== false || strpos($query, 'UPDATE') !== false) {
-                return $stmt->rowCount();
-            } else {
-                return $stmt->fetchAll();
-            }
-        }
+        throw new Exception("Query failed: " . $stmt->errorInfo()[2]);
     }
+    return match ($fetchMode) {
+        'fetch'    => $stmt->fetch(),
+        'fetchAll' => $stmt->fetchAll(),
+        default    => $stmt->rowCount(), // 'rowCount' pour INSERT, UPDATE, DELETE
+    };
 }
 
 
@@ -85,7 +78,7 @@ function deleteArticle($pdo, $id)
         // Suppression de l'article de la base de données
         $query = "DELETE FROM `articles` WHERE `id` = ?";
         $values = [$id];
-        execute_query($pdo, $query, 'fetchAll', $values);
+        execute_query($pdo, $query, 'rowCount', $values);
 
         // Suppression de l'image du dossier "uploads"
         if (file_exists($imagePath)) {
@@ -244,26 +237,21 @@ function verify_password($password)
 
 
 
-// function generate_confirmation_code()
-// {
-//     return str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
-// }
-
-// function isConfirmationCodeValid($confirmation_code)
-// {
-//     if (!isset($_SESSION['confirmation_code'], $_SESSION['code_generated_at'])) {
-//         return false;
-//     }
-
-//     return $confirmation_code == $_SESSION['confirmation_code'] && (time() - $_SESSION['code_generated_at']) <= 300;
-// }
+// centralized auth guard
+function require_login(string $redirect = '/rando13/login'): void
+{
+    if (!isset($_SESSION['user'])) {
+        header('Location: ' . $redirect);
+        exit();
+    }
+}
 
 // delete user
 function delete_user($pdo, $userId)
 {
     $query = "DELETE FROM `users` WHERE `id` = ?";
     $values = [$userId];
-    execute_query($pdo, $query, 'fetch', $values);
+    execute_query($pdo, $query, 'rowCount', $values);
 }
 
 // get the list of users

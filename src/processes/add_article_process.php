@@ -17,7 +17,7 @@ if (!empty($_POST)) {
             // requête d'ajout d'article
             $query = "INSERT INTO `articles`(`title`,`content`,`image`, user_id) VALUES (?,?,?,?)";
             $values = [$title, $content, $uploadResult['imageUrl'], $user_id];
-            $result = execute_query($pdo, $query, 'insert', $values);
+            $result = execute_query($pdo, $query, 'rowCount', $values);
             header("location: /rando13/articles");
             exit();
         } else {

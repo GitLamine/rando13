@@ -30,7 +30,7 @@ if (isset($_POST['email'])) {
             if (send_token_mail($_POST['email'], $body)) { // Send email with the token
                 $query = "UPDATE `users` SET token = ?  WHERE `email` = ?";
                 $values = [$token, $email_post];
-                $update_password = execute_query($pdo, $query, 'fetch', $values);
+                $update_password = execute_query($pdo, $query, 'rowCount', $values);
                 $email_sent = "Email envoyé vérifiez votre boite email";
             } else {
                 $errors['email'] = "An error occurred";

@@ -12,7 +12,7 @@ switch ($action) {
         require 'Views/home.php';
         break;
     case 'add_article':
-        if (!isset($_SESSION['user'])) { header('Location: /rando13/login'); exit(); }
+        require_login();
         require 'Views/add_article.php';
         break;
     case 'login':
@@ -22,7 +22,7 @@ switch ($action) {
         require 'Views/register.php';
         break;
     case 'profile':
-        if (!isset($_SESSION['user'])) { header('Location: /rando13/login'); exit(); }
+        require_login();
         require 'Views/profile.php';
         break;
     case 'articles':

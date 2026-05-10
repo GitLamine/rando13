@@ -65,7 +65,7 @@ if (!empty($_POST)) {
             $values = [
                 $first_name, $last_name, $email, $hashed_password, $role_user, $city
             ];
-            $result = execute_query($pdo, $query, 'insert', $values);
+            $result = execute_query($pdo, $query, 'rowCount', $values);
 
             // get ID user
             $user_id = $pdo->lastInsertId();
@@ -75,7 +75,7 @@ if (!empty($_POST)) {
                 // Insérer l'ID de l'utilisateur dans la table newsletter_subscribers
                 $newsletter_query = "INSERT INTO newsletter_subscribers (user_id, email) VALUES (?,?)";
                 $newsletter_values = [$user_id, $email];
-                execute_query($pdo, $newsletter_query, 'insert', $newsletter_values);
+                execute_query($pdo, $newsletter_query, 'rowCount', $newsletter_values);
             }
 
 
