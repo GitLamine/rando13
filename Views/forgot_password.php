@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/src/functions.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/src/processes/forgot_password_process.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/processes/forgot_password_process.php';
 
 
 ?>

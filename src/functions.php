@@ -1,7 +1,7 @@
 <?php
 // session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/database.php';
 // CSRF protection
 function generate_csrf_token(): string
 {
@@ -73,7 +73,7 @@ function deleteArticle($pdo, $id)
 
     if ($result && !empty($result['image'])) {
         // Chemin complet de l'image
-        $imagePath = '/Rando13/uploads/' . $result['image'];
+        $imagePath = $_SERVER['DOCUMENT_ROOT'] . '/rando13/uploads/' . $result['image'];
 
         // Suppression de l'article de la base de données
         $query = "DELETE FROM `articles` WHERE `id` = ?";
@@ -127,7 +127,7 @@ function uploadImage($image)
     $filename = bin2hex(random_bytes(16)) . '.' . $extension;
 
     // Set the destination location for the file
-    $destination = $_SERVER['DOCUMENT_ROOT'] . '/Rando13/uploads/' . $filename;
+    $destination = $_SERVER['DOCUMENT_ROOT'] . '/rando13/uploads/' . $filename;
 
     // Define allowed file extensions and MIME types
     $allowedExtensions = array('jpg', 'jpeg', 'png', 'gif');

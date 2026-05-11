@@ -23,7 +23,7 @@ $titre = "Accueil";
                 <time class="card-subtitle mb-2 text-muted">Article ajouté le : <?= htmlspecialchars($data["created_at"]); ?></time>
 
                 <?php if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') : ?>
-                    <a href="rando13/index.php?action=articles&delete_article=<?= $data['id']; ?>" class="card-link" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')">Supprimer cet article</a>
+                    <a href="/rando13/index.php?action=articles&delete_article=<?= $data['id']; ?>" class="card-link" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?')">Supprimer cet article</a>
                 <?php endif; ?>
 
                 <p class="card-text"><?= $data["content"]; ?></p>

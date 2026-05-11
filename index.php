@@ -1,9 +1,10 @@
 <?php
 session_start();
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/Views/includes/head.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/Views/includes/navbar.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/config.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/database.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/Views/includes/head.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/Views/includes/navbar.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/database.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/functions.php';
 
 $action = $_GET['action'] ?? 'default';
 switch ($action) {
@@ -41,4 +42,4 @@ switch ($action) {
         require 'Views/404.php';
         break;
 }
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/Views/includes/footer.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/Views/includes/footer.php';

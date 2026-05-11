@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/src/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/functions.php';
 if (!empty($_POST)) {
     verify_csrf_token();
     $_SESSION['login_errors'] = [];

@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/src/functions.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/src/processes/profile_process.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/functions.php';
+include_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/processes/profile_process.php';
 
 $titre = "Profile";
 $curent_user = $_SESSION['user'];

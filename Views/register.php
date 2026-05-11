@@ -1,7 +1,7 @@
 <!-- register.php -->
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/src/functions.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/src/processes/register_process.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/processes/register_process.php';
 
 $title = "Inscription";
 // var_dump($_SESSION);

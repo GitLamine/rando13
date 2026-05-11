@@ -1,6 +1,6 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/src/functions.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Rando13/mail.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/src/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/rando13/mail.php';
 
 
 $errors = [];
